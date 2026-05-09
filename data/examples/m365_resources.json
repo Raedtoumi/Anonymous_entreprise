@@ -1,0 +1,90 @@
+{
+  "m365": {
+    "resources": {
+      "m365_files": [
+        {
+          "path": "/teams/finance/reports/Q1_Summary.xlsx",
+          "classification": "Confidential",
+          "retention_label": "Confidential - 7 Years",
+          "dlp_policy_applied": true,
+          "owner_assigned": true,
+          "encryption_enabled": true,
+          "data_residency": "Europe"
+        },
+        {
+          "path": "/onedrive/budget.xlsx",
+          "classification": "Internal",
+          "retention_label": "Internal - 3 Years",
+          "dlp_policy_applied": true,
+          "owner_assigned": true
+        }
+      ],
+      "sharepoint_sites": [
+        {
+          "url": "https://contoso.sharepoint.com/sites/finance",
+          "displayName": "Finance",
+          "contains_sensitive_data": true,
+          "external_sharing_capability": "Existing guests",
+          "dlp_enabled": true,
+          "audit_log_enabled": true,
+          "encryption": true,
+          "contains_credit_card_data": false,
+          "contains_ssn": false,
+          "contains_phi": false
+        }
+      ],
+      "teams": [
+        {
+          "displayName": "Executive Team",
+          "channels": [
+            {
+              "displayName": "Strategic Planning",
+              "external_sharing_enabled": false,
+              "dlp_policy_enabled": true,
+              "contains_sensitive_data": true,
+              "message_retention_policy": {
+                "enabled": true
+              }
+            }
+          ]
+        }
+      ],
+      "m365_tenants": [
+        {
+          "displayName": "Contoso",
+          "audit_logging": {
+            "enabled": true
+          },
+          "defender_enabled": true,
+          "user_access_logging_enabled": true,
+          "data_deletion_policy": true,
+          "security_monitoring_enabled": true,
+          "incident_alerting_enabled": true,
+          "pim_enabled": true,
+          "isms_metrics_tracked": true
+        }
+      ],
+      "exchange_mailboxes": [
+        {
+          "primarySmtpAddress": "ceo@contoso.com",
+          "audit_enabled": true,
+          "contains_sensitive_data": true,
+          "information_barrier_policy": "Executive-Policy-1"
+        }
+      ],
+      "m365_external_shares": [
+        {
+          "shared_with": "partner@external.com",
+          "contains_sensitive_data": false,
+          "data_processing_agreement": true
+        }
+      ],
+      "cloud_providers": [
+        {
+          "name": "Microsoft",
+          "security_assessment_status": "Completed"
+        }
+      ]
+    }
+  }
+}

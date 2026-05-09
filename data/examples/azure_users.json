@@ -1,0 +1,54 @@
+{
+  "azure": {
+    "users": [
+      {
+        "userPrincipalName": "admin@contoso.com",
+        "id": "12345",
+        "mfa_enabled": true,
+        "password_policy": {
+          "minimum_length": 12,
+          "complexity_required": true,
+          "expiration_days": 90
+        },
+        "lastSignInDateTime": 1715000000,
+        "employment_status": "Active",
+        "last_access_review": "2026-05-01",
+        "failed_signin_attempts": 0,
+        "account_locked_status": false,
+        "account_enabled": true,
+        "cloud_identity": true,
+        "conditional_access_enabled": true,
+        "role": "Global Administrator",
+        "pim_eligible": true,
+        "activeAccessSessions": 1,
+        "conditionalAccessPolicies": ["CA-Policy-1"],
+        "passwordless_signin_enabled": true,
+        "mfa_method": "Windows Hello"
+      },
+      {
+        "userPrincipalName": "user@contoso.com",
+        "id": "67890",
+        "mfa_enabled": true,
+        "password_policy": {
+          "minimum_length": 12,
+          "complexity_required": true,
+          "expiration_days": 90
+        },
+        "lastSignInDateTime": 1715000000,
+        "employment_status": "Active",
+        "last_access_review": "2026-05-01",
+        "failed_signin_attempts": 0,
+        "account_locked_status": false,
+        "account_enabled": true,
+        "cloud_identity": true,
+        "conditional_access_enabled": true,
+        "role": "User",
+        "pim_eligible": false,
+        "activeAccessSessions": 1,
+        "conditionalAccessPolicies": ["CA-Policy-2"],
+        "passwordless_signin_enabled": false,
+        "mfa_method": "Mobile App"
+      }
+    ]
+  }
+}

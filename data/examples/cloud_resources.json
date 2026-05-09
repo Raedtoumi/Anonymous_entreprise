@@ -1,0 +1,77 @@
+{
+  "azure": {
+    "resources": {
+      "storage_accounts": [
+        {
+          "name": "prodstg001",
+          "type": "Microsoft.Storage/storageAccounts",
+          "encryption_at_rest": {
+            "enabled": true,
+            "algorithm": "AES-256",
+            "cmk_enabled": true
+          },
+          "https_only": true,
+          "tls_minimum_version": 1.2,
+          "data_transfer": {
+            "https_only": true
+          },
+          "audit_logging": {
+            "enabled": true,
+            "retention_days": 365,
+            "siem_forwarding": true,
+            "immutable_storage": true
+          },
+          "blob_logging": {
+            "enabled": true
+          },
+          "monitoring_enabled": true,
+          "criticality": "Critical"
+        }
+      ],
+      "sql_databases": [
+        {
+          "name": "proddb-001",
+          "type": "Microsoft.Sql/servers/databases",
+          "transparent_data_encryption": {
+            "enabled": true
+          },
+          "auditing_policy": {
+            "enabled": true
+          },
+          "audit_logging": {
+            "enabled": true,
+            "retention_days": 90
+          }
+        }
+      ],
+      "cloud_resources": [
+        {
+          "name": "azure-app-prod",
+          "type": "Web App",
+          "encryption_key_management": "Customer Managed",
+          "data_residency_enforced": true,
+          "classification": "Confidential",
+          "security_assessment_completed": true,
+          "incident_response_plan": true,
+          "security_monitoring_enabled": true,
+          "incident_alerting_enabled": true,
+          "contains_sensitive_data": true
+        }
+      ],
+      "all_resources": [
+        {
+          "name": "keyvault-prod",
+          "type": "Key Vault",
+          "monitoring_enabled": true,
+          "audit_logging": {
+            "enabled": true,
+            "retention_days": 90,
+            "automated_analysis_enabled": true,
+            "suspicious_activity_detection": true
+          },
+          "criticality": "Critical"
+        }
+      ]
+    }
+  }
+}
