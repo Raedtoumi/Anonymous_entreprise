@@ -33,8 +33,9 @@ deny[msg] {
 # ISO 27001:2022 A.5.5.3 - User Access Review (Annual minimum)
 deny[msg] {
     user := access_control.users[_]
-    user.last_access_review == "" or user.last_access_review == null
     user.employment_status == "Active"
+    review := user.last_access_review
+    not review
     days_active := (now - user.created_date) / 86400
     days_active > 365
     msg := sprintf("ISO 27001:2022 A.5.5.3: User %s access review overdue (>1 year) - violates periodic review", [user.userPrincipalName])

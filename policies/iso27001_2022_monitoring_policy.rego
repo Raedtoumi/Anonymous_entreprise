@@ -55,7 +55,8 @@ deny[msg] {
 # Organization must measure control effectiveness
 deny[msg] {
     control := resources.controls[_]
-    control.measurement_metrics == null or control.measurement_metrics == ""
+    metrics := control.measurement_metrics
+    not metrics
     msg := sprintf("ISO 27001:2022 A.5.18: Control %s lacks measurement metrics - violates 2022 measurement requirement", [control.control_id])
 }
 
@@ -63,13 +64,13 @@ deny[msg] {
 # MTTR (Mean Time to Respond) and MTPD (Mean Time to Detect) tracking
 deny[msg] {
     metric := metrics.incident_metrics[_]
-    metric.mttr == null or metric.mttr > 4
+    (metric.mttr == null) or (metric.mttr > 4)
     msg := sprintf("ISO 27001:2022 A.5.18: Incident response MTTR not tracked or exceeds 4 hours - violates 2022 metrics requirement")
 }
 
 deny[msg] {
     metric := metrics.incident_metrics[_]
-    metric.mtpd == null or metric.mtpd > 1
+    (metric.mtpd == null) or (metric.mtpd > 1)
     msg := sprintf("ISO 27001:2022 A.5.18: Incident detection MTPD not tracked or exceeds 1 hour - violates 2022 metrics requirement")
 }
 

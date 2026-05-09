@@ -47,7 +47,8 @@ deny[msg] {
 # Users must have unique identities with audit trail
 deny[msg] {
     user := identities.users[_]
-    user.last_access_review == "" or user.last_access_review == null
+    review := user.last_access_review
+    not review
     msg := sprintf("ISO 27001:2022 A.5.16.1: User %s missing access review - violates 2022 identity management requirement", [user.userPrincipalName])
 }
 

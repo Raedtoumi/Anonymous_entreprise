@@ -13,15 +13,17 @@ import future.keywords.contains
 # All cloud data must be classified
 deny[msg] {
     file := resources.m365_files[_]
-    file.classification == "" or file.classification == null
+    classification := file.classification
+    not classification
     msg := sprintf("ISO 27001:2022 A.5.23: M365 file %s unclassified - violates cloud data classification (NEW 2022)", [file.path])
 }
 
 # ISO 27001:2022 A.5.23 - Cloud Data Residency (NEW requirement)
 deny[msg] {
     resource := resources.m365_resources[_]
-    resource.data_residency == "Multi-region" or resource.data_residency == "Unspecified"
     resource.classification in ["Confidential", "Restricted"]
+    residency := resource.data_residency
+    residency in ["Multi-region", "Unspecified"]
     msg := sprintf("ISO 27001:2022 A.5.23: M365 resource %s contains sensitive data with undefined residency (2022 requirement)", [resource.name])
 }
 
@@ -44,8 +46,9 @@ deny[msg] {
 # ISO 27001:2022 A.5.23 - Cloud Service Continuity
 deny[msg] {
     cloud_service := resources.cloud_services[_]
-    cloud_service.availability_sla == "" or cloud_service.availability_sla == null
     cloud_service.criticality in ["Critical", "High"]
+    sla := cloud_service.availability_sla
+    not sla
     msg := sprintf("ISO 27001:2022 A.5.23: Critical cloud service %s lacks defined SLA (2022 requirement)", [cloud_service.name])
 }
 
@@ -97,7 +100,8 @@ deny[msg] {
 # ISO 27001:2022 A.5.9.2 - Supplier Incident Coordination (NEW in 2022)
 deny[msg] {
     vendor := resources.m365_vendors[_]
-    vendor.incident_notification_sla == "" or vendor.incident_notification_sla == null
+    sla := vendor.incident_notification_sla
+    not sla
     msg := sprintf("ISO 27001:2022 A.5.9.2: M365 vendor %s lacks incident notification SLA (NEW 2022)", [vendor.name])
 }
 
@@ -113,7 +117,8 @@ deny[msg] {
 deny[msg] {
     file := resources.m365_files[_]
     file.classification in ["Confidential", "Restricted"]
-    file.retention_label == "" or file.retention_label == null
+    label := file.retention_label
+    not label
     msg := sprintf("ISO 27001:2022 A.5.19: Classified file %s lacks retention label", [file.path])
 }
 

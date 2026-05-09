@@ -22,7 +22,8 @@ deny[msg] {
 # ISO 27001:2022 A.5.14.1 - Policy Review & Communication
 deny[msg] {
     policy := compliance.policies[_]
-    policy.last_review == "" or policy.last_review == null
+    review := policy.last_review
+    not review
     msg := sprintf("ISO 27001:2022 A.5.14.1: Policy %s never reviewed - violates periodic review", [policy.policy_id])
 }
 
@@ -108,7 +109,8 @@ deny[msg] {
 # ISO 27001:2022 A.5.14.2 - Retention Requirements
 deny[msg] {
     record := compliance.records[_]
-    record.retention_period == "" or record.retention_period == null
+    period := record.retention_period
+    not period
     msg := sprintf("ISO 27001:2022 A.5.14.2: Record %s has no retention period defined", [record.record_id])
 }
 

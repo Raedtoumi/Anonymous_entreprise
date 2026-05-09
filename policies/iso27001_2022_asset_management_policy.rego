@@ -17,15 +17,17 @@ deny[msg] {
 # ISO 27001:2022 A.5.4 - Asset Classification (mandatory)
 deny[msg] {
     asset := assets.all_assets[_]
-    asset.classification == "" or asset.classification == null
+    classification := asset.classification
+    not classification
     msg := sprintf("ISO 27001:2022 A.5.4: Asset %s (%s) not classified - violates asset management", [asset.asset_id, asset.asset_type])
 }
 
 # ISO 27001:2022 A.5.4 - Asset Ownership (mandatory)
 deny[msg] {
     asset := assets.all_assets[_]
-    asset.owner == "" or asset.owner == null
     asset.criticality in ["Critical", "High"]
+    owner := asset.owner
+    not owner
     msg := sprintf("ISO 27001:2022 A.5.4: Critical asset %s has no owner - violates asset management", [asset.asset_id])
 }
 
