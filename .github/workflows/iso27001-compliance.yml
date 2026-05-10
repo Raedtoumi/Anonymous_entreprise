@@ -14,9 +14,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up OPA
-        uses: open-policy-agent/setup-opa@v1
+        uses: open-policy-agent/setup-opa@v2
         with:
-          version: latest
+          version: v0.70.0
 
       - name: Check OPA version
         run: opa version
