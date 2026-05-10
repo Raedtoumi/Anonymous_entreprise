@@ -56,8 +56,7 @@ deny[msg] {
 # Organization must measure control effectiveness
 deny[msg] {
     control := resources.controls[_]
-    metrics := control.measurement_metrics
-    not metrics
+    not control.measurement_metrics
     msg := sprintf("ISO 27001:2022 A.5.18: Control %s lacks measurement metrics - violates 2022 measurement requirement", [control.control_id])
 }
 

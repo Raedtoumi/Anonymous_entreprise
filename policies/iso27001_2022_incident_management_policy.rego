@@ -35,8 +35,7 @@ deny[msg] {
 # ISO 27001:2022 A.5.12.2 - Incident Classification (mandatory)
 deny[msg] {
     incident := incidents.security_incidents[_]
-    classification := incident.classification
-    not classification
+    not incident.classification
     msg := sprintf("ISO 27001:2022 A.5.12.2: Incident %s not classified - violates incident documentation", [incident.incident_id])
 }
 
@@ -120,8 +119,7 @@ deny[msg] {
 # ISO 27001:2022 A.5.13.3 - Backup Testing
 deny[msg] {
     backup := business_continuity.backups[_]
-    test := backup.last_restore_test
-    not test
+    not backup.last_restore_test
     msg := sprintf("ISO 27001:2022 A.5.13.3: Backup %s never tested - violates backup validation", [backup.backup_id])
 }
 

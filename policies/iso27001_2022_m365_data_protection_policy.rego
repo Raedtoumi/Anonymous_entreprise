@@ -14,8 +14,7 @@ import future.keywords.in
 # All cloud data must be classified
 deny[msg] {
     file := resources.m365_files[_]
-    classification := file.classification
-    not classification
+    not file.classification
     msg := sprintf("ISO 27001:2022 A.5.23: M365 file %s unclassified - violates cloud data classification (NEW 2022)", [file.path])
 }
 
@@ -48,8 +47,7 @@ deny[msg] {
 deny[msg] {
     cloud_service := resources.cloud_services[_]
     cloud_service.criticality in ["Critical", "High"]
-    sla := cloud_service.availability_sla
-    not sla
+    not cloud_service.availability_sla
     msg := sprintf("ISO 27001:2022 A.5.23: Critical cloud service %s lacks defined SLA (2022 requirement)", [cloud_service.name])
 }
 
@@ -101,8 +99,7 @@ deny[msg] {
 # ISO 27001:2022 A.5.9.2 - Supplier Incident Coordination (NEW in 2022)
 deny[msg] {
     vendor := resources.m365_vendors[_]
-    sla := vendor.incident_notification_sla
-    not sla
+    not vendor.incident_notification_sla
     msg := sprintf("ISO 27001:2022 A.5.9.2: M365 vendor %s lacks incident notification SLA (NEW 2022)", [vendor.name])
 }
 
@@ -118,8 +115,7 @@ deny[msg] {
 deny[msg] {
     file := resources.m365_files[_]
     file.classification in ["Confidential", "Restricted"]
-    label := file.retention_label
-    not label
+    not file.retention_label
     msg := sprintf("ISO 27001:2022 A.5.19: Classified file %s lacks retention label", [file.path])
 }
 
