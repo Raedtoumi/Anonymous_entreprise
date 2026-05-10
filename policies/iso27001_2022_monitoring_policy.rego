@@ -9,6 +9,7 @@ import data.azure.resources
 import data.azure.metrics
 import future.keywords.if
 import future.keywords.contains
+import future.keywords.in
 
 # ISO 27001:2022 A.5.18 - Monitoring (NEW Control emphasis in 2022)
 # All systems must have continuous monitoring enabled

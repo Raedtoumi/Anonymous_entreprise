@@ -7,6 +7,7 @@ package iso27001_2022.incident_management
 import data.incidents
 import data.business_continuity
 import future.keywords.contains
+import future.keywords.in
 
 # ISO 27001:2022 A.5.12.1 - Incident Response Plan (mandatory)
 deny[msg] {

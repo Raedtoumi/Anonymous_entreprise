@@ -7,6 +7,7 @@ package iso27001_2022.cryptography
 
 import data.azure.resources
 import future.keywords.if
+import future.keywords.in
 
 # ISO 27001:2022 A.5.10.1 - Cryptographic Controls (Enhanced)
 # Mandatory encryption at rest for all data

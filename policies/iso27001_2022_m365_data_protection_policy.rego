@@ -8,6 +8,7 @@ package iso27001_2022.m365_data_protection
 import data.m365.resources
 import future.keywords.if
 import future.keywords.contains
+import future.keywords.in
 
 # ISO 27001:2022 A.5.23 - Cloud Services Security (NEW major section)
 # All cloud data must be classified

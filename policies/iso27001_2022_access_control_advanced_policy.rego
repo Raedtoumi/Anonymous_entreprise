@@ -5,6 +5,7 @@ package iso27001_2022.access_control_advanced
 
 import data.access_control
 import future.keywords.contains
+import future.keywords.in
 
 # ISO 27001:2022 A.5.5.1 - User Access Control (Authorization)
 deny[msg] {
@@ -90,7 +91,9 @@ deny[msg] {
 
 # Helper: Identify conflicting roles (SOD violation)
 identify_conflicting_roles(roles) = conflicts {
-    conflicts := [role | role := roles[_]; role in ["Approver", "Reviewer"]; "Requester" in roles]
+    has_requester := roles[_] == "Requester"
+    has_requester
+    conflicts := [role | role := roles[_]; conflict_role := ["Approver", "Reviewer"][_]; role == conflict_role]
 }
 
 # Audit: Privileged access not monitored

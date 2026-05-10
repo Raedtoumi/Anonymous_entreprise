@@ -5,6 +5,7 @@ package iso27001_2022.asset_management
 
 import data.assets
 import future.keywords.contains
+import future.keywords.in
 
 # ISO 27001:2022 A.5.4 - Information Assets (NEW emphasis)
 # All assets must be inventoried and classified

@@ -8,6 +8,7 @@ package iso27001_2022.authentication
 import data.azure.identities
 import future.keywords.contains
 import future.keywords.if
+import future.keywords.in
 
 # ISO 27001:2022 A.5.15.2.1 - User Registration and De-registration
 deny[msg] {
