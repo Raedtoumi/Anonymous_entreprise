@@ -153,26 +153,23 @@ test_compliant_sensitive_file {
 }
 
 test_unclassified_cloud_file {
-    file := {
+    count(deny) > 0 with data.m365.resources.m365_files as [{
         "path": "/teams/data.xlsx",
         "classification": ""
-    }
-    count(deny) > 0
+    }]
 }
 
 test_sensitive_no_dpa {
-    share := {
+    count(deny) > 0 with data.m365.resources.m365_external_shares as [{
         "shared_with": "external-vendor@company.com",
         "contains_sensitive_data": true,
         "data_processing_agreement": false
-    }
-    count(deny) > 0
+    }]
 }
 
 test_cloud_provider_no_assessment {
-    provider := {
+    count(deny) > 0 with data.m365.resources.cloud_providers as [{
         "name": "Microsoft",
         "security_assessment_status": "Not Completed"
-    }
-    count(deny) > 0
+    }]
 }

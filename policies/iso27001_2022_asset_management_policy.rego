@@ -88,11 +88,10 @@ test_compliant_asset {
 }
 
 test_unclassified_asset {
-    asset := {
+    count(deny) > 0 with data.assets.all_assets as [{
         "asset_id": "SRV-001",
         "asset_type": "Server",
         "in_inventory": true,
         "classification": ""
-    }
-    count(deny) > 0
+    }]
 }

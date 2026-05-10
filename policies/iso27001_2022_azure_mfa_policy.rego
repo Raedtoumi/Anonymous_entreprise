@@ -107,10 +107,9 @@ test_compliant_user {
 }
 
 test_no_mfa {
-    user := {
+    count(deny) > 0 with data.azure.identities.users as [{
         "userPrincipalName": "user@contoso.com",
         "mfa_enabled": false,
         "account_enabled": true
-    }
-    count(deny) > 0
+    }]
 }

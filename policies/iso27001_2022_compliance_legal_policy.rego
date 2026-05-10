@@ -191,26 +191,23 @@ test_compliant_organization {
 }
 
 test_no_security_policy {
-    org := {
+    count(deny) > 0 with data.compliance.organization as [{
         "information_security_policy": false
-    }
-    count(deny) > 0
+    }]
 }
 
 test_overdue_policy_review {
-    policy := {
+    count(deny) > 0 with data.compliance.policies as [{
         "policy_id": "POL-001",
         "last_review": 1704000000
-    }
-    count(deny) > 0
+    }]
 }
 
 test_unaddressed_audit_findings {
-    audit := {
+    count(deny) > 0 with data.compliance.audits as [{
         "audit_id": "AUD-001",
         "audit_completed": true,
         "findings_addressed": false,
         "days_since_completion": 40
-    }
-    count(deny) > 0
+    }]
 }

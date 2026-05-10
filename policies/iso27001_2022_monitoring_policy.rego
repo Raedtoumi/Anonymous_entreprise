@@ -159,31 +159,28 @@ test_compliant_monitoring {
 }
 
 test_no_monitoring {
-    resource := {
+    count(deny) > 0 with data.azure.resources.all_resources as [{
         "name": "prod-db",
         "type": "Database",
         "criticality": "Critical",
         "monitoring_enabled": false
-    }
-    count(deny) > 0
+    }]
 }
 
 test_insufficient_retention {
-    resource := {
+    count(deny) > 0 with data.azure.resources.all_resources as [{
         "name": "prod-app",
         "audit_logging": {
             "enabled": true,
             "retention_days": 30
         }
-    }
-    count(deny) > 0
+    }]
 }
 
 test_cloud_no_monitoring {
-    cloud_resource := {
+    count(deny) > 0 with data.azure.resources.cloud_resources as [{
         "name": "azure-app",
         "security_monitoring_enabled": false,
         "incident_alerting_enabled": false
-    }
-    count(deny) > 0
+    }]
 }

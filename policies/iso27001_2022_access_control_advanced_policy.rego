@@ -118,20 +118,18 @@ test_compliant_user {
 }
 
 test_no_access_review {
-    user := {
+    count(deny) > 0 with data.access_control.users as [{
         "userPrincipalName": "user@contoso.com",
         "access_rights_reviewed": false,
         "employment_status": "Active"
-    }
-    count(deny) > 0
+    }]
 }
 
 test_terminated_user_active {
-    user := {
+    count(deny) > 0 with data.access_control.users as [{
         "userPrincipalName": "olduser@contoso.com",
         "employment_status": "Terminated",
         "account_disabled": false,
         "termination_date": 1704000000
-    }
-    count(deny) > 0
+    }]
 }

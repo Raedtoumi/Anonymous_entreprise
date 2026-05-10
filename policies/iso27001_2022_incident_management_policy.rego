@@ -184,21 +184,19 @@ test_compliant_incident {
 }
 
 test_unreported_incident {
-    incident := {
+    count(deny) > 0 with data.incidents.security_incidents as [{
         "incident_id": "INC-001",
         "severity": "Critical",
         "reported": false,
         "days_since_detection": 2
-    }
-    count(deny) > 0
+    }]
 }
 
 test_no_dr_testing {
-    plan := {
+    count(deny) > 0 with data.business_continuity.dr_plans as [{
         "plan_id": "DR-001",
         "test_executed": false
-    }
-    count(deny) > 0
+    }]
 }
 
 test_compliant_backup {

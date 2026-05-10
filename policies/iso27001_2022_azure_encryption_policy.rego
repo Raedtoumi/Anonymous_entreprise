@@ -127,19 +127,17 @@ test_compliant_storage {
 }
 
 test_weak_encryption {
-    storage := {
+    count(deny) > 0 with data.azure.resources.storage_accounts as [{
         "name": "weakstg",
         "encryption_at_rest": {"enabled": true, "algorithm": "AES-128"},
         "https_only": true
-    }
-    count(deny) > 0
+    }]
 }
 
 test_cloud_resource_no_assessment {
-    cloud_resource := {
+    count(deny) > 0 with data.azure.resources.cloud_resources as [{
         "name": "cloud-app",
         "security_assessment_completed": false,
         "contains_sensitive_data": true
-    }
-    count(deny) > 0
+    }]
 }
