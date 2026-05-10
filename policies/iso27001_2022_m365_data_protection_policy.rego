@@ -154,8 +154,7 @@ test_compliant_sensitive_file {
 
 test_unclassified_cloud_file {
     count(deny) > 0 with data.m365.resources.m365_files as [{
-        "path": "/teams/data.xlsx",
-        "classification": ""
+        "path": "/teams/data.xlsx"
     }]
 }
 

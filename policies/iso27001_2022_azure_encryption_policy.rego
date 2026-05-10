@@ -135,7 +135,7 @@ test_weak_encryption {
 }
 
 test_cloud_resource_no_assessment {
-    count(deny) > 0 with data.azure.resources.cloud_resources as [{
+    count(deny) > 0 with data.azure.resources.cloud_services as [{
         "name": "cloud-app",
         "security_assessment_completed": false,
         "contains_sensitive_data": true

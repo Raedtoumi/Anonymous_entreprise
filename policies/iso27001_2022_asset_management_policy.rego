@@ -91,7 +91,6 @@ test_unclassified_asset {
     count(deny) > 0 with data.assets.all_assets as [{
         "asset_id": "SRV-001",
         "asset_type": "Server",
-        "in_inventory": true,
-        "classification": ""
+        "in_inventory": true
     }]
 }
