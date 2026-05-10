@@ -10,13 +10,13 @@ import future.keywords.contains
 deny[msg] {
     organization := compliance.organization[_]
     organization.information_security_policy == false
-    msg := sprintf("ISO 27001:2022 A.5.14.1: No information security policy - violates compliance requirement")
+    msg := "ISO 27001:2022 A.5.14.1: No information security policy - violates compliance requirement"
 }
 
 deny[msg] {
     organization := compliance.organization[_]
     organization.information_security_objectives == false
-    msg := sprintf("ISO 27001:2022 A.5.14.1: No information security objectives - violates compliance requirement")
+    msg := "ISO 27001:2022 A.5.14.1: No information security objectives - violates compliance requirement"
 }
 
 # ISO 27001:2022 A.5.14.1 - Policy Review & Communication
@@ -45,7 +45,7 @@ deny[msg] {
 deny[msg] {
     organization := compliance.organization[_]
     organization.compliance_monitoring_program == false
-    msg := sprintf("ISO 27001:2022 A.5.14.2: No compliance monitoring program - violates compliance assessment")
+    msg := "ISO 27001:2022 A.5.14.2: No compliance monitoring program - violates compliance assessment"
 }
 
 # ISO 27001:2022 A.5.14.2 - Regulatory Compliance Assessment
@@ -66,7 +66,7 @@ deny[msg] {
 deny[msg] {
     organization := compliance.organization[_]
     organization.information_security_audit == false
-    msg := sprintf("ISO 27001:2022 A.5.14.2: No independent security audit conducted - violates assessment requirement")
+    msg := "ISO 27001:2022 A.5.14.2: No independent security audit conducted - violates assessment requirement"
 }
 
 deny[msg] {
@@ -82,28 +82,28 @@ deny[msg] {
     organization := compliance.organization[_]
     organization.data_protection_dpia == false
     organization.processes_personal_data == true
-    msg := sprintf("ISO 27001:2022 A.5.14.2: DPIA not completed despite processing personal data")
+    msg := "ISO 27001:2022 A.5.14.2: DPIA not completed despite processing personal data"
 }
 
 # ISO 27001:2022 A.5.14.2 - Data Subject Rights
 deny[msg] {
     organization := compliance.organization[_]
     organization.data_subject_rights_procedure == false
-    msg := sprintf("ISO 27001:2022 A.5.14.2: No data subject rights procedure - violates data protection compliance")
+    msg := "ISO 27001:2022 A.5.14.2: No data subject rights procedure - violates data protection compliance"
 }
 
 # ISO 27001:2022 A.5.14.2 - Data Breach Notification
 deny[msg] {
     organization := compliance.organization[_]
     organization.breach_notification_procedure == false
-    msg := sprintf("ISO 27001:2022 A.5.14.2: No breach notification procedure - violates compliance requirement")
+    msg := "ISO 27001:2022 A.5.14.2: No breach notification procedure - violates compliance requirement"
 }
 
 # ISO 27001:2022 A.5.14.2 - Records & Documentation
 deny[msg] {
     organization := compliance.organization[_]
     organization.isms_documentation_maintained == false
-    msg := sprintf("ISO 27001:2022 A.5.14.2: ISMS documentation not maintained - violates evidence requirement")
+    msg := "ISO 27001:2022 A.5.14.2: ISMS documentation not maintained - violates evidence requirement"
 }
 
 # ISO 27001:2022 A.5.14.2 - Retention Requirements
@@ -150,7 +150,7 @@ deny[msg] {
 deny[msg] {
     organization := compliance.organization[_]
     organization.management_review_completed == false
-    msg := sprintf("ISO 27001:2022 A.5.14.2: Management review of ISMS not completed - violates compliance review")
+    msg := "ISO 27001:2022 A.5.14.2: Management review of ISMS not completed - violates compliance review"
 }
 
 deny[msg] {
@@ -172,7 +172,7 @@ audit[msg] {
 audit[msg] {
     organization := compliance.organization[_]
     organization.regulatory_monitoring_process == false
-    msg := sprintf("ISO 27001:2022 A.5.14.2: Regulatory landscape monitoring not established - recommend process")
+    msg := "ISO 27001:2022 A.5.14.2: Regulatory landscape monitoring not established - recommend process"
 }
 
 # Test cases

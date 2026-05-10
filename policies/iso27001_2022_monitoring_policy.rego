@@ -66,25 +66,25 @@ deny[msg] {
 deny[msg] {
     metric := metrics.incident_metrics[_]
     not metric.mttr
-    msg := sprintf("ISO 27001:2022 A.5.18: Incident response MTTR not tracked - violates 2022 metrics requirement")
+    msg := "ISO 27001:2022 A.5.18: Incident response MTTR not tracked - violates 2022 metrics requirement"
 }
 
 deny[msg] {
     metric := metrics.incident_metrics[_]
     metric.mttr > 4
-    msg := sprintf("ISO 27001:2022 A.5.18: Incident response MTTR exceeds 4 hours - violates 2022 metrics requirement")
+    msg := "ISO 27001:2022 A.5.18: Incident response MTTR exceeds 4 hours - violates 2022 metrics requirement"
 }
 
 deny[msg] {
     metric := metrics.incident_metrics[_]
     not metric.mtpd
-    msg := sprintf("ISO 27001:2022 A.5.18: Incident detection MTPD not tracked - violates 2022 metrics requirement")
+    msg := "ISO 27001:2022 A.5.18: Incident detection MTPD not tracked - violates 2022 metrics requirement"
 }
 
 deny[msg] {
     metric := metrics.incident_metrics[_]
     metric.mtpd > 1
-    msg := sprintf("ISO 27001:2022 A.5.18: Incident detection MTPD exceeds 1 hour - violates 2022 metrics requirement")
+    msg := "ISO 27001:2022 A.5.18: Incident detection MTPD exceeds 1 hour - violates 2022 metrics requirement"
 }
 
 # ISO 27001:2022 A.5.23.1 - Cloud Transparency/Reporting
@@ -137,7 +137,7 @@ audit[msg] {
 audit[msg] {
     organization := resources.organization[_]
     organization.isms_metrics_tracked == false
-    msg := sprintf("ISO 27001:2022 A.5.18: Organization should track ISMS KPIs per 2022 measurement requirements")
+    msg := "ISO 27001:2022 A.5.18: Organization should track ISMS KPIs per 2022 measurement requirements"
 }
 
 # Test cases

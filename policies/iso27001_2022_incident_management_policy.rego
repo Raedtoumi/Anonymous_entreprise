@@ -13,14 +13,14 @@ import future.keywords.in
 deny[msg] {
     organization := incidents.organization[_]
     organization.incident_response_plan == false
-    msg := sprintf("ISO 27001:2022 A.5.12.1: No incident response plan defined - violates incident management")
+    msg := "ISO 27001:2022 A.5.12.1: No incident response plan defined - violates incident management"
 }
 
 # ISO 27001:2022 A.5.12.1 - Incident Response Team (mandatory)
 deny[msg] {
     organization := incidents.organization[_]
     count(organization.incident_response_team) < 3
-    msg := sprintf("ISO 27001:2022 A.5.12.1: Incident response team incomplete (need min 3 roles)")
+    msg := "ISO 27001:2022 A.5.12.1: Incident response team incomplete (need min 3 roles)"
 }
 
 # ISO 27001:2022 A.5.12.2 - Incident Reporting & Communication
@@ -70,14 +70,14 @@ deny[msg] {
 deny[msg] {
     organization := incidents.organization[_]
     organization.forensics_capability == false
-    msg := sprintf("ISO 27001:2022 A.5.12: No digital forensics capability - violates incident investigation requirement")
+    msg := "ISO 27001:2022 A.5.12: No digital forensics capability - violates incident investigation requirement"
 }
 
 # ISO 27001:2022 A.5.13.1 - Business Continuity Policy (mandatory)
 deny[msg] {
     organization := business_continuity.organization[_]
     organization.bc_policy_published == false
-    msg := sprintf("ISO 27001:2022 A.5.13.1: No business continuity policy - violates BC management")
+    msg := "ISO 27001:2022 A.5.13.1: No business continuity policy - violates BC management"
 }
 
 # ISO 27001:2022 A.5.13.2 - Business Continuity Planning
@@ -159,14 +159,14 @@ deny[msg] {
 audit[msg] {
     organization := incidents.organization[_]
     organization.crisis_communication_plan == false
-    msg := sprintf("ISO 27001:2022 A.5.12: Crisis communication plan recommended")
+    msg := "ISO 27001:2022 A.5.12: Crisis communication plan recommended"
 }
 
 # Audit: Third-party incident coordination
 audit[msg] {
     organization := incidents.organization[_]
     organization.third_party_incident_procedures == false
-    msg := sprintf("ISO 27001:2022 A.5.12: Third-party incident coordination procedures recommended")
+    msg := "ISO 27001:2022 A.5.12: Third-party incident coordination procedures recommended"
 }
 
 # Test cases

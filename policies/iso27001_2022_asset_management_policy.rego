@@ -70,7 +70,7 @@ deny[msg] {
 audit[msg] {
     organization := assets.organization[_]
     organization.last_inventory_review > 180
-    msg := sprintf("ISO 27001:2022 A.5.4: Asset inventory review overdue (recommend quarterly)")
+    msg := "ISO 27001:2022 A.5.4: Asset inventory review overdue (recommend quarterly)"
 }
 
 # Test cases

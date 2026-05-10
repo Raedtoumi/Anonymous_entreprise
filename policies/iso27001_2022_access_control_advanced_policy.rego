@@ -78,7 +78,7 @@ deny[msg] {
 deny[msg] {
     organization := access_control.organization[_]
     organization.emergency_access_procedure == false
-    msg := sprintf("ISO 27001:2022 A.5.5.1: No emergency access procedures defined - violates break-glass controls")
+    msg := "ISO 27001:2022 A.5.5.1: No emergency access procedures defined - violates break-glass controls"
 }
 
 # ISO 27001:2022 A.5.5.3 - Supplier Access Review
