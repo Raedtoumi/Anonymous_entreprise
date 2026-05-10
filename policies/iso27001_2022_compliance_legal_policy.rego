@@ -30,7 +30,7 @@ deny[msg] {
 deny[msg] {
     policy := compliance.policies[_]
     policy.last_review != ""
-    days_since_review := (now - policy.last_review) / 86400
+    days_since_review := (time.now_ns() / 1000000000 - policy.last_review) / 86400
     days_since_review > 365
     msg := sprintf("ISO 27001:2022 A.5.14.1: Policy %s not reviewed for %d days (require annual)", [policy.policy_id, days_since_review])
 }
@@ -156,7 +156,7 @@ deny[msg] {
 deny[msg] {
     review := compliance.management_reviews[_]
     review.last_completed != ""
-    days_since_review := (now - review.last_completed) / 86400
+    days_since_review := (time.now_ns() / 1000000000 - review.last_completed) / 86400
     days_since_review > 365
     msg := sprintf("ISO 27001:2022 A.5.14.2: Management review not completed for %d days (require annual)", [days_since_review])
 }

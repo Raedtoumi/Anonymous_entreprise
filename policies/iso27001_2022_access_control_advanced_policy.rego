@@ -37,7 +37,7 @@ deny[msg] {
     user.employment_status == "Active"
     review := user.last_access_review
     not review
-    days_active := (now - user.created_date) / 86400
+    days_active := (time.now_ns() / 1000000000 - user.created_date) / 86400
     days_active > 365
     msg := sprintf("ISO 27001:2022 A.5.5.3: User %s access review overdue (>1 year) - violates periodic review", [user.userPrincipalName])
 }
@@ -55,7 +55,7 @@ deny[msg] {
     user := access_control.users[_]
     user.employment_status == "Terminated"
     user.account_disabled == false
-    days_since_termination := (now - user.termination_date) / 86400
+    days_since_termination := (time.now_ns() / 1000000000 - user.termination_date) / 86400
     days_since_termination > 1
     msg := sprintf("ISO 27001:2022 A.5.5.4: Terminated user %s account not disabled immediately", [user.userPrincipalName])
 }

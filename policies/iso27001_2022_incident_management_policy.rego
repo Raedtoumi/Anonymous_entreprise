@@ -128,7 +128,7 @@ deny[msg] {
 deny[msg] {
     backup := business_continuity.backups[_]
     backup.last_restore_test != ""
-    days_since_test := (now - backup.last_restore_test) / 86400
+    days_since_test := (time.now_ns() / 1000000000 - backup.last_restore_test) / 86400
     days_since_test > 90
     msg := sprintf("ISO 27001:2022 A.5.13.3: Backup %s last tested %d days ago (recommend quarterly)", [backup.backup_id, days_since_test])
 }
@@ -143,7 +143,7 @@ deny[msg] {
 deny[msg] {
     plan := business_continuity.dr_plans[_]
     plan.last_test != ""
-    days_since_test := (now - plan.last_test) / 86400
+    days_since_test := (time.now_ns() / 1000000000 - plan.last_test) / 86400
     days_since_test > 365
     msg := sprintf("ISO 27001:2022 A.5.13.4: DR Plan %s last tested %d days ago - requires annual test", [plan.plan_id, days_since_test])
 }

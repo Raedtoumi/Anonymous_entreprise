@@ -38,7 +38,7 @@ deny[msg] {
 deny[msg] {
     user := identities.users[_]
     user.account_enabled == true
-    days_since_signin := (now - user.lastSignInDateTime) / 86400
+    days_since_signin := (time.now_ns() / 1000000000 - user.lastSignInDateTime) / 86400
     days_since_signin > 60
     user.employment_status != "Terminated"
     msg := sprintf("ISO 27001:2022 A.5.15.6: User %s inactive %d days but account still active - violates de-registration control", [user.userPrincipalName, days_since_signin])
