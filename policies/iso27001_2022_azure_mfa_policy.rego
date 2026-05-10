@@ -82,7 +82,8 @@ deny[msg] {
 audit[msg] {
     user := identities.users[_]
     user.passwordless_signin_enabled == false
-    (user.mfa_method != "Windows Hello") and (user.mfa_method != "FIDO2")
+    user.mfa_method != "Windows Hello"
+    user.mfa_method != "FIDO2"
     msg := sprintf("ISO 27001:2022 A.5.15.3: User %s should use passwordless methods for enhanced security (2022 best practice)", [user.userPrincipalName])
 }
 

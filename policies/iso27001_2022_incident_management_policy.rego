@@ -82,16 +82,30 @@ deny[msg] {
 # ISO 27001:2022 A.5.13.2 - Business Continuity Planning
 deny[msg] {
     bc_plan := business_continuity.bc_plans[_]
-    (bc_plan.rto == "") or (bc_plan.rto == null) or (bc_plan.rto > 4)
+    not bc_plan.rto
     bc_plan.criticality in ["Critical", "High"]
-    msg := sprintf("ISO 27001:2022 A.5.13.2: Critical service %s RTO not defined or >4 hours", [bc_plan.service_name])
+    msg := sprintf("ISO 27001:2022 A.5.13.2: Critical service %s RTO not defined", [bc_plan.service_name])
 }
 
 deny[msg] {
     bc_plan := business_continuity.bc_plans[_]
-    (bc_plan.rpo == "") or (bc_plan.rpo == null) or (bc_plan.rpo > 1)
+    bc_plan.rto > 4
     bc_plan.criticality in ["Critical", "High"]
-    msg := sprintf("ISO 27001:2022 A.5.13.2: Critical service %s RPO not defined or >1 hour", [bc_plan.service_name])
+    msg := sprintf("ISO 27001:2022 A.5.13.2: Critical service %s RTO >4 hours", [bc_plan.service_name])
+}
+
+deny[msg] {
+    bc_plan := business_continuity.bc_plans[_]
+    not bc_plan.rpo
+    bc_plan.criticality in ["Critical", "High"]
+    msg := sprintf("ISO 27001:2022 A.5.13.2: Critical service %s RPO not defined", [bc_plan.service_name])
+}
+
+deny[msg] {
+    bc_plan := business_continuity.bc_plans[_]
+    bc_plan.rpo > 1
+    bc_plan.criticality in ["Critical", "High"]
+    msg := sprintf("ISO 27001:2022 A.5.13.2: Critical service %s RPO >1 hour", [bc_plan.service_name])
 }
 
 # ISO 27001:2022 A.5.13.3 - Backup & Recovery (mandatory)

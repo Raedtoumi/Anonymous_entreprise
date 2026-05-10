@@ -45,7 +45,8 @@ deny[msg] {
 # Cloud providers must ensure cryptographic controls
 deny[msg] {
     cloud_resource := resources.cloud_resources[_]
-    (cloud_resource.encryption_key_management != "Customer Managed") and (cloud_resource.encryption_key_management != "Provider Managed with customer audit")
+    cloud_resource.encryption_key_management != "Customer Managed"
+    cloud_resource.encryption_key_management != "Provider Managed with customer audit"
     msg := sprintf("ISO 27001:2022 A.5.23: Cloud resource %s lacks secure key management - 2022 cloud security requirement", [cloud_resource.name])
 }
 

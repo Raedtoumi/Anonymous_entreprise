@@ -64,14 +64,26 @@ deny[msg] {
 # MTTR (Mean Time to Respond) and MTPD (Mean Time to Detect) tracking
 deny[msg] {
     metric := metrics.incident_metrics[_]
-    (metric.mttr == null) or (metric.mttr > 4)
-    msg := sprintf("ISO 27001:2022 A.5.18: Incident response MTTR not tracked or exceeds 4 hours - violates 2022 metrics requirement")
+    not metric.mttr
+    msg := sprintf("ISO 27001:2022 A.5.18: Incident response MTTR not tracked - violates 2022 metrics requirement")
 }
 
 deny[msg] {
     metric := metrics.incident_metrics[_]
-    (metric.mtpd == null) or (metric.mtpd > 1)
-    msg := sprintf("ISO 27001:2022 A.5.18: Incident detection MTPD not tracked or exceeds 1 hour - violates 2022 metrics requirement")
+    metric.mttr > 4
+    msg := sprintf("ISO 27001:2022 A.5.18: Incident response MTTR exceeds 4 hours - violates 2022 metrics requirement")
+}
+
+deny[msg] {
+    metric := metrics.incident_metrics[_]
+    not metric.mtpd
+    msg := sprintf("ISO 27001:2022 A.5.18: Incident detection MTPD not tracked - violates 2022 metrics requirement")
+}
+
+deny[msg] {
+    metric := metrics.incident_metrics[_]
+    metric.mtpd > 1
+    msg := sprintf("ISO 27001:2022 A.5.18: Incident detection MTPD exceeds 1 hour - violates 2022 metrics requirement")
 }
 
 # ISO 27001:2022 A.5.23.1 - Cloud Transparency/Reporting
